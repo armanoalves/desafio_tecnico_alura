@@ -2,6 +2,8 @@
 
 Este projeto é uma aplicação desenvolvida com Flask para realizar a análise de sentimentos de feedbacks de usuários. Ele utiliza a API da OpenAI para processar os textos fornecidos, determinando se o sentimento é `POSITIVO`, `NEGATIVO` ou `INCONCLUSIVO`, e identifica características específicas solicitadas pelos usuários.
 
+![GIF que mostra o teste da rota de analise nos 4 tipos de retornos que ela pode apresentar](https://i.imgur.com/8aTVhJp.gif)
+
 ## Funcionalidades
 
 - Recebe feedbacks de usuários via API.
