@@ -18,19 +18,21 @@ def openai_analyzer():
 
     if not feedback:
         return jsonify({"error": "Feedback não enviado!"}), 400
-
-    feedback_id = post_feedback(feedback)
+    
     prompt = create_prompt(feedback)
     response_json = get_llm_response(prompt)
 
-    if 'error' in response_json:
-        return jsonify(response_json), 500
+    if (response_json["sentiment"] != "SPAM"):
+        feedback_id = post_feedback(feedback)
+        save_sentiment(response_json, feedback_id)
 
-    save_sentiment(response_json, feedback_id)
-
+        return jsonify({
+            "message": "Feedback e Sentimento adicionados ao banco com sucesso",
+        }), 201
+    
     return jsonify({
-        "message": "Feedback e Sentimento adicionados ao banco com sucesso",
-    }), 201
+            "message": "SPAM reconhecido, Feedback e Sentimento não foram adicionados ao banco",
+        }), 400
 
 def get_feedbacks():
     feedbacks = Feedback.query.all()
@@ -63,13 +65,14 @@ def post_feedback(feedback):
 
 def create_prompt(feedback):
     prompt_template = """
-    Você é treinado para analisar e detectar o sentimento de um texto fornecido para a startup AluraMind.
-
-    Se o texto fornecido estiver desconexo ou aparentar não ter sentido, considere como um SPAM. Caso seja um SPAM, apenas ignore a requisição.
-
-    Na análise determine se o sentimento é: “POSITIVO”, “NEGATIVO” ou “INCONCLUSIVO”.
-
-    Retorne apenas um objeto JSON, formatado, contendo os atributos `sentiment`, `requested_features` que é uma lista de objetos com os atributos `code` e `reason`. Segue um exemplo de feedback:
+    Você é responsável pelo setor de análise de sentimentos de textos da AluraMind.
+    Na análise determine se o sentimento é: “POSITIVO”, “NEGATIVO”,  “INCONCLUSIVO” ou "SPAM". Onde:
+    * POSITIVO: é quando há um elogio, pontos positivos ou features sobre o produto. Por exemplo: ""O usuário gostaria de realizar a edição do próprio perfil"
+    * NEGATIVO: é quando há uma crítica, reclamação ou apontamento de problemas relacionados ao produto. Por exemplo: "A aplicação trava frequentemente e me impede de concluir minhas tarefas."
+    * INCONCLUSIVO: é quando a mensagem não apresenta claramente um sentimento positivo ou negativo, podendo ser neutra ou ambígua. Por exemplo: "O aplicativo foi atualizado recentemente."
+    * SPAM: é quando o texto não está relacionado ao contexto do produto ou contém conteúdo irrelevante ou repetitivo, muitas vezes com o intuito de promover algo. Também pode ser conteúdo agressivo ou seu conteúdo não tem sentido com a Alumind. Por exemplo: "Clique aqui para ganhar um prêmio!" ou várias letras sem sentido como "kaslausj", "que bosta". 
+    Como nossos feedbacks vem de múltiplas fontes (redes sociais, etc), às vezes algum SPAM pode ser enviado como feedback e nosso sistema pode classificá-lo de forma incorreta. Caso seja um SPAM, retorne apenas "SPAM".
+    Com base nisso, retorne apenas um objeto JSON, formatado, contendo os atributos `sentiment`, `requested_features` que é uma lista de objetos com os atributos `code` e `reason`. Segue um exemplo de feedback:
     {{
         "sentiment": "POSITIVO",
         "requested_features": [
