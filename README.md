@@ -63,7 +63,7 @@ projeto-analise-sentimentos/
 
 ```bash
 git clone https://github.com/armanoalves/desafio_tecnico_alura.git
-cd projeto-analise-sentimentos
+cd desafio_tecnico_alura
 ```
 
 ### 2. Instalar Dependências
@@ -85,12 +85,26 @@ DB_HOST=localhost
 DB_PORT=5432
 DB_DATABASE=nome_do_seu_banco
 
-FLASK_APP=run.py # Matenha como esta
-
 OPENAI_API_KEY=sua_api_key
 ```
 
-### 4. Criar as Tabelas no Banco de Dados
+### 4. Apontar para aplicação o arquivo principal
+
+Para ser possível rodar os próximos comandos é importante estabelecer para o ambiente da aplicação qual o arquivo principal da mesma, você pode fazer isso usando o seguinte comando:
+
+**Windows**
+```bash
+$env:FLASK_APP="run.py"
+```
+
+ou
+
+**Linux**
+```bash
+export FLASK_APP="run.py"
+```
+
+### 5. Criar as Tabelas no Banco de Dados
 
 Para realizar a migrações das tabelas criadas no model do projeto, é necessário rodar o seguinte comando:
 
@@ -98,7 +112,7 @@ Para realizar a migrações das tabelas criadas no model do projeto, é necessá
 flask db upgrade
 ```
 
-### 5. Executar a Aplicação
+### 6. Executar a Aplicação
 
 Após configurar as variáveis de ambiente, execute o comando abaixo para iniciar o servidor Flask:
 
@@ -194,9 +208,11 @@ O servidor será iniciado e a aplicação estará disponível em `http://localho
 
 ## Implementações Futuras
 
-Seria interessante implementar a **documentação completa** para cobrir **todos os aspectos da aplicação** incluindo API modelos de dados, sem contar os exemplos de uso. 
+* Criar uma página frontend que lista os feedbacks com algum gráfico indicando a porcentagem de cada tipo: negativo, positivo, inconclusivo 
 
-Também, aplicar um **sistema de segurança** para proteger dados dos usuários com **autenticação via JWT** proteção contra ataques como SQL Injection e XSS e **criptografia de dados sensíveis**.
+* Implementar a documentação completa para cobrir todos os aspectos da aplicação incluindo API modelos de dados, sem contar os exemplos de uso.
+
+* Aplicar um sistema de segurança para proteger dados dos usuários com autenticação via JWT proteção contra ataques como SQL Injection e XSS e criptografia de dados sensíveis.
 
 ## Licença
 
