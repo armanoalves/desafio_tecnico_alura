@@ -16,18 +16,45 @@ Este projeto é uma aplicação desenvolvida com Flask para realizar a análise 
 - **SQLAlchemy**: ORM para interagir com o banco de dados.
 - **OpenAI API**: Para análise de sentimentos.
 - **PostgreSQL**: Banco de dados relacional.
+- **Postman**: Para testar as rotas da API.
 
 ## Requisitos
 
-- Python 3.1x
+- Python 3.12.3
 - PostgreSQL
+
+## Estrutura do Projeto
+
+A estrutura do projeto é organizada da seguinte forma:
+
+```
+projeto-analise-sentimentos/
+│
+├── app/
+│   ├── __init__.py           # Configurações iniciais do Flask, SQLAlchemy e outras extensões
+│   ├── controllers.py        # Controladores que gerenciam as rotas e a lógica de negócio
+│   ├── models.py             # Definições dos modelos de banco de dados
+│   └── routes.py             # Definição das rotas da aplicação
+│
+├── migrations/               # Migrações do banco de dados geradas pelo Flask-Migrate
+│
+├── venv/                     # Ambiente virtual para as dependências do projeto
+│
+├── .env                      # Arquivo de configuração das variáveis de ambiente
+├── .gitignore                # Arquivo que especifica quais arquivos/directórios ignorar pelo Git
+├── config.py                 # Configurações da aplicação
+├── LICENSE                   # Licença do projeto
+├── README.md                 # Documentação do projeto (este arquivo)
+├── requirements.txt          # Lista de dependências do projeto
+└── run.py                    # Script para rodar o servidor Flask
+```
 
 ## Como Executar
 
 ### 1. Clonar o Repositório
 
 ```bash
-git clone https://github.com/seu-usuario/projeto-analise-sentimentos.git
+git clone https://github.com/armanoalves/desafio_tecnico_alura.git
 cd projeto-analise-sentimentos
 ```
 
@@ -125,6 +152,12 @@ O servidor será iniciado e a aplicação estará disponível em `http://localho
     }
   ]
   ```
+
+## Implementações futuras
+
+Seria interessante implementar a **documentação completa** para cobrir **todos os aspectos da aplicação** incluindo API modelos de dados, sem contar os exemplos de uso. 
+
+Também, aplicar um **sistema de segurança** para proteger dados dos usuários com **autenticação via JWT** proteção contra ataques como SQL Injection e XSS e **criptografia de dados sensíveis**.
 
 ## Licença
 
