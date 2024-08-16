@@ -1,6 +1,6 @@
-# Projeto de Análise de Sentimentos
+# Análise de Sentimentos Alumind
 
-Este projeto é uma aplicação desenvolvida com Flask para realizar a análise de sentimentos de feedbacks de usuários. Ele utiliza a API da OpenAI para processar os textos fornecidos, determinando se o sentimento é `POSITIVO`, `NEGATIVO` ou `INCONCLUSIVO`, e identifica características específicas solicitadas pelos usuários.
+Este projeto é uma aplicação desenvolvida com Flask para realizar a análise de sentimentos de feedbacks de usuários. Ele utiliza a API da OpenAI para processar os textos fornecidos, determinando se o sentimento é `POSITIVO`, `NEGATIVO`, `INCONCLUSIVO` e `SPAM`, e identifica características específicas solicitadas pelos usuários.
 
 ![GIF que mostra o teste da rota de analise nos 4 tipos de retornos que ela pode apresentar](https://i.imgur.com/8aTVhJp.gif)
 
@@ -27,7 +27,7 @@ Este projeto é uma aplicação desenvolvida com Flask para realizar a análise 
 
 ## Estrutura do Banco de Dados
 
-Esboço das tabelas que viriam compor o banco de dados. Sofreram alguns pequenos ajustes nos relacionamentos entre si, mas nada que se difere muito da estrutura mostrada na imagem.
+Estrutura das tabelas que compõem o banco de dados. Ao longo do desenvolvimento do código, sofreram alguns pequenos ajustes nos relacionamentos entre si, mas nada que se difere da estrutura mostrada na imagem.
 
 ![Captura de tela de tabelas na plataforma do BRModelo Online](https://i.imgur.com/jg7npqL.png)
 
