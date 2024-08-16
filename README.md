@@ -96,6 +96,8 @@ O servidor será iniciado e a aplicação estará disponível em `http://localho
 
 **POST** `/openai_analizer`
 
+**CASO 1**
+
 - **Descrição**: Envia um feedback para análise de sentimentos e adiciona o feedback e o sentimento gerado ao banco de dados.
 - **Corpo da Requisição**:
 
@@ -110,6 +112,25 @@ O servidor será iniciado e a aplicação estará disponível em `http://localho
   ```json
   {
     "message": "Feedback e Sentimento adicionados ao banco com sucesso"
+  }
+  ```
+
+**CASO 2**
+
+- **Descrição**: Caso em que o Feedback analisado é reconhecido como um SPAM.
+- **Corpo da Requisição**:
+
+  ```json
+  {
+    "feedback": "Coisas aleatórias escritas aqui"
+  }
+  ```
+
+- **Resposta**:
+
+  ```json
+  {
+    "message": "SPAM reconhecido, feedback e sentimento não foram adicionados ao banco"
   }
   ```
 
