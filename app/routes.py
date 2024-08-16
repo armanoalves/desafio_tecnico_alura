@@ -1,9 +1,8 @@
 from flask import Blueprint
-from app.controllers import create_feedback, get_feedbacks, create_sentiment, get_sentiments
+from app.controllers import get_feedbacks, get_sentiments, openai_analyzer
 
 bp = Blueprint('bp', __name__)
 
-bp.route('/feedback', methods=['POST'])(create_feedback)
+bp.route('/openai_analizer', methods=['POST'])(openai_analyzer)
 bp.route('/feedbacks', methods=['GET'])(get_feedbacks)
-bp.route('/sentiment', methods=['POST'])(create_sentiment)
 bp.route('/sentiments', methods=['GET'])(get_sentiments)
