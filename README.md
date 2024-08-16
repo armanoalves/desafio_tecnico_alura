@@ -85,10 +85,20 @@ DB_HOST=localhost
 DB_PORT=5432
 DB_DATABASE=nome_do_seu_banco
 
+FLASK_APP=run.py # Matenha como esta
+
 OPENAI_API_KEY=sua_api_key
 ```
 
-### 4. Executar a Aplicação
+### 4. Criar as Tabelas no Banco de Dados
+
+Para realizar a migrações das tabelas criadas no model do projeto, é necessário rodar o seguinte comando:
+
+```bash
+flask db upgrade
+```
+
+### 5. Executar a Aplicação
 
 Após configurar as variáveis de ambiente, execute o comando abaixo para iniciar o servidor Flask:
 
