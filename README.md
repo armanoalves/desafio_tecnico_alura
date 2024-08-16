@@ -23,6 +23,12 @@ Este projeto é uma aplicação desenvolvida com Flask para realizar a análise 
 - Python 3.12.3
 - PostgreSQL
 
+## Estrutura do Banco de Dados
+
+Esboço das tabelas que viriam compor o banco de dados. Sofreram alguns pequenos ajustes nos relacionamentos entre si, mas nada que se difere muito da estrutura mostrada na imagem.
+
+![Captura de tela de tabelas na plataforma do BRModelo Online](https://i.imgur.com/jg7npqL.png)
+
 ## Estrutura do Projeto
 
 A estrutura do projeto é organizada da seguinte forma:
@@ -174,7 +180,7 @@ O servidor será iniciado e a aplicação estará disponível em `http://localho
   ]
   ```
 
-## Implementações futuras
+## Implementações Futuras
 
 Seria interessante implementar a **documentação completa** para cobrir **todos os aspectos da aplicação** incluindo API modelos de dados, sem contar os exemplos de uso. 
 
