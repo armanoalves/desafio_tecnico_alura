@@ -2,16 +2,20 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-from dotenv import load_dotenv
-import os
+db = SQLAlchemy()
+migrate = Migrate()
 
-load_dotenv()
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object('config')
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{os.getenv('USER_NAME')}:{os.getenv('PASSWORD')}@{os.getenv('HOST')}:{os.getenv('PORT')}/{os.getenv('DATABASE')}"
+    db.init_app(app)
+    migrate.init_app(app, db)
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+    from app import controllers
+    from app import models
 
-from app.controllers import default
-from app.models import tabelas
+    from app.routes import bp
+    app.register_blueprint(bp)
+    
+    return app
